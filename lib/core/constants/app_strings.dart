@@ -1,4 +1,3 @@
-// ILYA-CHAT GLOBAL STRINGS - REFRESHED 2026-05-13
 class AppStrings {
   static const String appName = 'ILYA-Chat';
   static const String appVersion = 'v1.0.0';
