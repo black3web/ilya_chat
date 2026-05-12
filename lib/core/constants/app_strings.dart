@@ -1,23 +1,16 @@
-// File: lib/core/constants/app_strings.dart
+// ILYA-CHAT GLOBAL STRINGS - REFRESHED 2026-05-13
 class AppStrings {
-  // App Info
   static const String appName = 'ILYA-Chat';
   static const String appVersion = 'v1.0.0';
   static const String developerName = 'المبرمج إيليا';
   static const String copyright = '© 2024 المبرمج إيليا. جميع الحقوق محفوظة';
-
-  // Superuser hardcoded credentials
   static const String superuserName = 'المبرمج إيليا';
   static const String superuserId = '000000000001';
   static const String superuserUsername = 'a1';
   static const String superuserPassword = 'vgty085690vgty';
   static const String superuserEmail = 'admin@ilya-chat.app';
-
-  // Official channel
   static const String officialChannelId = 'ilya_chat_official';
   static const String officialChannelName = 'ILYA-Chat الرسمية';
-
-  // Auth
   static const String login = 'تسجيل الدخول';
   static const String register = 'إنشاء حساب';
   static const String userId = 'معرف المستخدم (ID)';
@@ -32,15 +25,11 @@ class AppStrings {
   static const String hasAccount = 'لديك حساب بالفعل؟ ';
   static const String idCopied = 'تم نسخ الـ ID';
   static const String idCannotChange = 'الـ ID لا يمكن تغييره أبداً';
-
-  // Navigation
   static const String chats = 'المحادثات';
   static const String groups = 'المجموعات';
   static const String channels = 'القنوات';
   static const String folders = 'المجلدات';
   static const String saved = 'الحافظة';
-
-  // Chat
   static const String typeMessage = 'اكتب رسالة...';
   static const String reply = 'رد';
   static const String copy = 'نسخ';
@@ -52,8 +41,6 @@ class AppStrings {
   static const String holdToRecord = 'اضغط مطولاً للتسجيل';
   static const String swipeUpSelfDestruct = 'اسحب للأعلى للإرسال المؤقت';
   static const String mediaCaption = 'أضف تعليقاً...';
-
-  // Profile
   static const String profile = 'الملف الشخصي';
   static const String editProfile = 'تعديل الملف';
   static const String bio = 'نبذة شخصية';
@@ -66,8 +53,6 @@ class AppStrings {
   static const String sendMessage = 'إرسال رسالة';
   static const String profileTheme = 'مظهر الملف';
   static const String changePhoto = 'تغيير الصورة';
-
-  // Groups & Channels
   static const String createGroup = 'إنشاء مجموعة';
   static const String createChannel = 'إنشاء قناة';
   static const String join = 'الانضمام';
@@ -83,13 +68,9 @@ class AppStrings {
   static const String demote = 'تخفيض';
   static const String permissions = 'الصلاحيات';
   static const String groupStats = 'إحصائيات المجموعة';
-
-  // Stories
   static const String addStory = 'إضافة قصة';
   static const String viewStory = 'مشاهدة القصة';
   static const String storyExpires = 'تنتهي القصص بعد 24 ساعة';
-
-  // Admin Panel
   static const String adminPanel = 'لوحة التحكم';
   static const String totalUsers = 'إجمالي المستخدمين';
   static const String activeToday = 'نشطون اليوم';
@@ -98,8 +79,6 @@ class AppStrings {
   static const String deleteUser = 'حذف الحساب';
   static const String supportTickets = 'تذاكر الدعم';
   static const String reportedUsers = 'البلاغات';
-
-  // Settings
   static const String settings = 'الإعدادات';
   static const String notifications = 'الإشعارات';
   static const String privacy = 'الخصوصية';
@@ -109,8 +88,6 @@ class AppStrings {
   static const String arabic = 'العربية';
   static const String english = 'English';
   static const String logout = 'تسجيل الخروج';
-
-  // Errors
   static const String errorGeneral = 'حدث خطأ، حاول مرة أخرى';
   static const String errorNetwork = 'خطأ في الاتصال بالإنترنت';
   static const String errorUserNotFound = 'المستخدم غير موجود';
@@ -118,5 +95,3 @@ class AppStrings {
   static const String errorUsernameExists = 'اسم المستخدم مستخدم بالفعل';
   static const String errorWeakPassword = 'كلمة المرور ضعيفة جداً';
 }
-// Last Update: Wed May 13 01:00:07 +03 2026
-// Force Build Sync: Wed May 13 01:21:52 +03 2026
