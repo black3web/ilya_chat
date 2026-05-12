@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "324624675054",
+    "project_id": "ilya-chat",
+    "storage_bucket": "ilya-chat.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324624675054:android:da66c30beb42461b9383ff",
+        "android_client_info": {
+          "package_name": "com.ilya.chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbyqLth3SGGjS7XhC9YHsAKwf3z5JOi2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

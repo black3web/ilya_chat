@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function getCustomId() {
+      return get(/databases/$(database)/documents/uid_map/$(request.auth.uid)).data.customId;
+    }
+
+    function isSuperuser() {
+      return isAuth() && getCustomId() == '000000000001';
+    }
+
+    // ── Users ──────────────────────────────────────────
+    match /users/{userId} {
+      allow read: if isAuth();
+      allow create: if isAuth();
+      allow update: if isAuth() && (getCustomId() == userId || isSuperuser());
+      allow delete: if isSuperuser();
+    }
+
+    // ── UID Map ────────────────────────────────────────
+    match /uid_map/{uid} {
+      allow read: if isAuth() && request.auth.uid == uid;
+      allow create: if isAuth() && request.auth.uid == uid;
+      allow update: if false;
+      allow delete: if isSuperuser();
+    }
+
+    // ── Chats ──────────────────────────────────────────
+    match /chats/{chatId} {
+      allow read: if isAuth() && getCustomId() in resource.data.participants;
+      allow create: if isAuth();
+      allow update: if isAuth() && getCustomId() in resource.data.participants;
+      allow delete: if isSuperuser();
+
+      match /messages/{messageId} {
+        allow read: if isAuth() && getCustomId() in get(/databases/$(database)/documents/chats/$(chatId)).data.participants;
+        allow create: if isAuth() && getCustomId() in get(/databases/$(database)/documents/chats/$(chatId)).data.participants;
+        allow update: if isAuth() && (request.resource.data.senderId == getCustomId() || isSuperuser());
+        allow delete: if isAuth() && (resource.data.senderId == getCustomId() || isSuperuser());
+      }
+    }
+
+    // ── Groups ─────────────────────────────────────────
+    match /groups/{groupId} {
+      allow read: if isAuth();
+      allow create: if isAuth();
+      allow update: if isAuth() && (getCustomId() in resource.data.memberIds || isSuperuser());
+      allow delete: if isAuth() && (getCustomId() == resource.data.ownerId || isSuperuser());
+
+      match /messages/{messageId} {
+        allow read: if isAuth() && getCustomId() in get(/databases/$(database)/documents/groups/$(groupId)).data.memberIds;
+        allow create: if isAuth() && getCustomId() in get(/databases/$(database)/documents/groups/$(groupId)).data.memberIds;
+        allow update: if isAuth() && (resource.data.senderId == getCustomId() || isSuperuser());
+        allow delete: if isSuperuser();
+      }
+    }
+
+    // ── Channels ───────────────────────────────────────
+    match /channels/{channelId} {
+      allow read: if isAuth();
+      allow create: if isAuth();
+      allow update: if isAuth() && (getCustomId() == resource.data.ownerId || getCustomId() in resource.data.adminIds || isSuperuser());
+      allow delete: if isAuth() && (getCustomId() == resource.data.ownerId || isSuperuser());
+
+      match /messages/{messageId} {
+        allow read: if isAuth() && getCustomId() in get(/databases/$(database)/documents/channels/$(channelId)).data.subscriberIds;
+        allow create: if isAuth() && (getCustomId() == get(/databases/$(database)/documents/channels/$(channelId)).data.ownerId || getCustomId() in get(/databases/$(database)/documents/channels/$(channelId)).data.adminIds);
+        allow update: if isSuperuser();
+        allow delete: if isSuperuser();
+      }
+    }
+
+    // ── Stories ────────────────────────────────────────
+    match /stories/{storyId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.userId == getCustomId();
+      allow update: if isAuth();
+      allow delete: if isAuth() && (resource.data.userId == getCustomId() || isSuperuser());
+    }
+
+    // ── Support Tickets ────────────────────────────────
+    match /support_tickets/{ticketId} {
+      allow read: if isSuperuser();
+      allow create: if isAuth();
+      allow update: if isSuperuser();
+      allow delete: if isSuperuser();
+    }
+  }
+}

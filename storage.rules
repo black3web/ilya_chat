@@ -1,0 +1,47 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function isImageOrVideo() {
+      return request.resource.contentType.matches('image/.*') ||
+             request.resource.contentType.matches('video/.*');
+    }
+
+    function isAudio() {
+      return request.resource.contentType.matches('audio/.*');
+    }
+
+    function maxSize(mb) {
+      return request.resource.size <= mb * 1024 * 1024;
+    }
+
+    // ── Avatars ────────────────────────────────────────
+    match /avatars/{userId} {
+      allow read: if isAuth();
+      allow write: if isAuth() && isImageOrVideo() && maxSize(5);
+    }
+
+    // ── Chat Media ─────────────────────────────────────
+    match /chats/{chatId}/{type}/{fileId} {
+      allow read: if isAuth();
+      allow write: if isAuth() && maxSize(50);
+    }
+
+    // ── Stories ────────────────────────────────────────
+    match /stories/{userId}/{fileId} {
+      allow read: if isAuth();
+      allow write: if isAuth() && maxSize(20);
+      allow delete: if isAuth();
+    }
+
+    // ── Group Media ────────────────────────────────────
+    match /groups/{groupId}/{fileId} {
+      allow read: if isAuth();
+      allow write: if isAuth() && maxSize(50);
+    }
+  }
+}

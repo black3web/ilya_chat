@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="ILYA-Chat - تطبيق المراسلة المتقدم">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="ILYA-Chat">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <title>ILYA-Chat</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #0A0A0F;
+      font-family: 'Cairo', sans-serif;
+      overflow: hidden;
+    }
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: #0A0A0F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #loading .logo {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    #loading .logo span { color: #FF0033; text-shadow: 0 0 12px #FF0033; }
+    #loading .bar {
+      width: 200px; height: 2px;
+      background: #1A1A25;
+      border-radius: 2px;
+      margin-top: 40px;
+      overflow: hidden;
+    }
+    #loading .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FF0033, #fff);
+      border-radius: 2px;
+      animation: load 2s ease-in-out forwards;
+    }
+    @keyframes load {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+    #loading .copy {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #4B5563;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="logo">ILYA<span>-Chat</span></div>
+    <div class="bar"><div class="bar-fill"></div></div>
+    <div class="copy">© 2024 المبرمج إيليا</div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      document.getElementById('loading').style.display = 'none';
+    });
+  </script>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

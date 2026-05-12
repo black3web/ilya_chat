@@ -1,0 +1,6 @@
+-keep class com.google.firebase.** { *; }
+-keep class io.flutter.** { *; }
+-dontwarn com.google.**
+-keep class * extends androidx.** { *; }
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
