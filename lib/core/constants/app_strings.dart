@@ -94,3 +94,4 @@ class AppStrings {
   static const String errorUsernameExists = 'اسم المستخدم مستخدم بالفعل';
   static const String errorWeakPassword = 'كلمة المرور ضعيفة جداً';
 }
+// Last Sync: Wed May 13 13:08:46 +03 2026
